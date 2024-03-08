@@ -50,6 +50,7 @@ minidump.ko
 msm_dma_iommu_mapping.ko
 pinctrl-kalama.ko
 qnoc-kalama.ko
+msm_rtb.ko
 ns.ko
 nvmem_qcom-spmi-sdam.ko
 phy-qcom-ufs.ko
@@ -61,6 +62,7 @@ qcom-dcvs.ko
 qcom-dload-mode.ko
 qcom_dma_heaps.ko
 qcom_hwspinlock.ko
+debug_symbol.ko
 qcom_logbuf_vh.ko
 qcom_iommu_util.ko
 qcom_llcc_pmu.ko
@@ -89,10 +91,13 @@ ufshcd-crypto-qti.ko
 arm_smmu.ko
 mem-offline.ko
 sdhci-msm.ko
+zlog_exception_dlkm.ko
+zlog_common_dlkm.ko
 qcom_rimps.ko
 c1dcvs_vendor.ko
 c1dcvs_scmi.ko
 bcl_pmic5.ko
+kmparam.ko
 nvme-core.ko
 nvme.ko
-msm_drm.ko
+nubia_hw_version.ko

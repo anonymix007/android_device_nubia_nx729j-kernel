@@ -3,8 +3,10 @@ softdep soc_sleep_stats pre: smem
 softdep q6_notifier_dlkm pre: qcom_q6v5_pas
 softdep msm_video pre: subsys-pil-tz msm-mmrm
 softdep memlat_scmi pre: memlat_vendor
+softdep zte_tpd pre: msm_drm
 softdep msm_kgsl pre: qcom-arm-smmu-mod nvmem_qfprom
 softdep qmi_helpers pre: qrtr
+softdep spcom pre: spss_utils
 softdep msm_eva pre: msm-mmrm
 softdep qsee_ipc_irq_bridge pre: qcom_ipcc
 softdep dwc3_msm pre: phy-generic phy-msm-snps-hs phy-msm-ssusb-qmp eud
@@ -13,3 +15,4 @@ softdep ipam pre: subsys-pil-tz
 softdep ipam pre: qcom-arm-smmu-mod
 softdep leds_qti_tri_led pre: pwm-qti-lpg
 softdep soc_fan pre: pwm-soc-fan
+softdep spss_utils pre: qcom_spss
