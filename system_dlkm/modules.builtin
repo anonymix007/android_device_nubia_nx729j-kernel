@@ -1,7 +1,10 @@
+kernel/lib/zlib_inflate/zlib_inflate.ko
+kernel/lib/zlib_deflate/zlib_deflate.ko
+kernel/lib/xz/xz_dec.ko
 kernel/arch/arm64/kvm/kvm.ko
 kernel/arch/arm64/crypto/sha2-ce.ko
 kernel/arch/arm64/crypto/sha512-ce.ko
-kernel/arch/arm64/crypto/polyval-ce.ko
+kernel/arch/arm64/crypto/ghash-ce.ko
 kernel/arch/arm64/crypto/aes-ce-cipher.ko
 kernel/arch/arm64/crypto/aes-glue-ce.ko
 kernel/arch/arm64/crypto/sha256-arm64.ko
@@ -115,8 +118,6 @@ kernel/crypto/cbc.ko
 kernel/crypto/cts.ko
 kernel/crypto/xts.ko
 kernel/crypto/ctr.ko
-kernel/crypto/xctr.ko
-kernel/crypto/hctr2.ko
 kernel/crypto/adiantum.ko
 kernel/crypto/nhpoly1305.ko
 kernel/crypto/gcm.ko
@@ -139,7 +140,6 @@ kernel/crypto/ansi_cprng.ko
 kernel/crypto/drbg.ko
 kernel/crypto/jitterentropy_rng.ko
 kernel/crypto/ghash-generic.ko
-kernel/crypto/polyval-generic.ko
 kernel/crypto/zstd.ko
 kernel/crypto/ecc.ko
 kernel/crypto/essiv.ko
@@ -156,7 +156,6 @@ kernel/lib/math/rational.ko
 kernel/lib/crypto/libchacha.ko
 kernel/lib/crypto/libaes.ko
 kernel/lib/crypto/libarc4.ko
-kernel/lib/crypto/libblake2s-generic.ko
 kernel/lib/crypto/libblake2s.ko
 kernel/lib/crypto/libchacha20poly1305.ko
 kernel/lib/crypto/libcurve25519-generic.ko
@@ -171,8 +170,6 @@ kernel/lib/crc32.ko
 kernel/lib/libcrc32c.ko
 kernel/lib/crc8.ko
 kernel/lib/xxhash.ko
-kernel/lib/zlib_inflate/zlib_inflate.ko
-kernel/lib/zlib_deflate/zlib_deflate.ko
 kernel/lib/reed_solomon/reed_solomon.ko
 kernel/lib/lzo/lzo_compress.ko
 kernel/lib/lzo/lzo_decompress.ko
@@ -181,7 +178,6 @@ kernel/lib/lz4/lz4hc_compress.ko
 kernel/lib/lz4/lz4_decompress.ko
 kernel/lib/zstd/zstd_compress.ko
 kernel/lib/zstd/zstd_decompress.ko
-kernel/lib/xz/xz_dec.ko
 kernel/lib/ts_kmp.ko
 kernel/lib/ts_bm.ko
 kernel/lib/ts_fsm.ko
@@ -296,6 +292,7 @@ kernel/drivers/net/usb/cdc_eem.ko
 kernel/drivers/net/usb/usbnet.ko
 kernel/drivers/net/usb/cdc_ncm.ko
 kernel/drivers/net/usb/aqc111.ko
+kernel/drivers/net/usb/r8153_ecm.ko
 kernel/drivers/uio/uio.ko
 kernel/drivers/usb/common/usb-common.ko
 kernel/drivers/usb/core/usbcore.ko
@@ -308,6 +305,7 @@ kernel/drivers/usb/host/ehci-pci.ko
 kernel/drivers/usb/host/ehci-platform.ko
 kernel/drivers/usb/host/xhci-hcd.ko
 kernel/drivers/usb/host/xhci-pci.ko
+kernel/drivers/usb/host/xhci-pci-renesas.ko
 kernel/drivers/usb/host/xhci-plat-hcd.ko
 kernel/drivers/usb/class/cdc-acm.ko
 kernel/drivers/usb/storage/uas.ko
@@ -378,6 +376,7 @@ kernel/drivers/md/dm-crypt.ko
 kernel/drivers/md/dm-default-key.ko
 kernel/drivers/md/dm-snapshot.ko
 kernel/drivers/md/dm-verity.ko
+kernel/drivers/md/dm-bow.ko
 kernel/drivers/md/dm-user.ko
 kernel/drivers/bluetooth/hci_uart.ko
 kernel/drivers/bluetooth/btsdio.ko
@@ -396,6 +395,7 @@ kernel/drivers/mmc/host/sdhci.ko
 kernel/drivers/mmc/host/sdhci-pltfm.ko
 kernel/drivers/leds/led-class.ko
 kernel/drivers/leds/led-class-flash.ko
+kernel/drivers/leds/led-class-multicolor.ko
 kernel/drivers/leds/trigger/ledtrig-timer.ko
 kernel/drivers/leds/trigger/ledtrig-transient.ko
 kernel/drivers/firmware/arm_scpi.ko
@@ -454,6 +454,8 @@ kernel/drivers/devfreq/governor_userspace.ko
 kernel/drivers/devfreq/governor_passive.ko
 kernel/drivers/extcon/extcon-core.ko
 kernel/drivers/iio/industrialio.ko
+kernel/drivers/iio/buffer/industrialio-triggered-buffer.ko
+kernel/drivers/iio/buffer/kfifo_buf.ko
 kernel/drivers/powercap/powercap_sys.ko
 kernel/drivers/android/binder.ko
 kernel/drivers/android/android_debug_symbols.ko
@@ -494,7 +496,6 @@ kernel/net/sched/sch_fq_codel.ko
 kernel/net/sched/sch_fq.ko
 kernel/net/sched/cls_u32.ko
 kernel/net/sched/cls_fw.ko
-kernel/net/sched/cls_tcindex.ko
 kernel/net/sched/cls_basic.ko
 kernel/net/sched/cls_flow.ko
 kernel/net/sched/cls_bpf.ko
@@ -643,6 +644,7 @@ kernel/net/8021q/8021q.ko
 kernel/net/tipc/tipc.ko
 kernel/net/tipc/diag.ko
 kernel/net/rfkill/rfkill.ko
+kernel/net/9p/9pnet.ko
 kernel/net/6lowpan/6lowpan.ko
 kernel/net/6lowpan/nhc_dest.ko
 kernel/net/6lowpan/nhc_fragment.ko
