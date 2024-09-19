@@ -331,7 +331,7 @@ struct pbe_config_t {
 	__s32 p1BandPassCoeffs[5*3];
 	__s32 p1BassShelfCoeffs[5];
 	__s32 p1TrebleShelfCoeffs[5];
-} __packed;
+} __attribute__((packed));
 
 struct pbe_params {
 	__u32 device;

@@ -8,6 +8,12 @@
 #define _MSM_DRM_PP_H_
 
 #include <linux/types.h>
+#include <drm/drm.h>
+
+#define ENABLE_EVENT_SPR_OPR_VALUE
+#define ENABLE_EVENT_INTF_MISR_SIGNATURE
+#define MAX_DSI_DISPLAY 4
+
 /**
  * struct drm_msm_pcc_coeff - PCC coefficient structure for each color
  *                            component.
@@ -142,6 +148,7 @@ struct drm_msm_memcol {
 #define SIXZONE_HUE_ENABLE (1 << 0)
 #define SIXZONE_SAT_ENABLE (1 << 1)
 #define SIXZONE_VAL_ENABLE (1 << 2)
+#define SIXZONE_SV_ENABLE (1 << 3)
 /* struct drm_msm_sixzone_curve - Sixzone HSV adjustment curve structure.
  * @p0: Hue adjustment.
  * @p1: Saturation/Value adjustment.
@@ -156,12 +163,16 @@ struct drm_msm_sixzone_curve {
  *         - SIXZONE_HUE_ENABLE: Enable hue adjustment
  *         - SIXZONE_SAT_ENABLE: Enable saturation adjustment
  *         - SIXZONE_VAL_ENABLE: Enable value adjustment
+ *         - SIXZONE_SV_ENABLE: Enable SV feature
  * @threshold: threshold qualifier.
  * @adjust_p0: Adjustment curve.
  * @adjust_p1: Adjustment curve.
  * @sat_hold: Saturation hold info.
  * @val_hold: Value hold info.
  * @curve: HSV adjustment curve lut.
+ * @sat_adjust_p0: Saturation adjustment curve.
+ * @sat_adjust_p1: Saturation adjustment curve.
+ * @curve_p2: Saturation Mid/Saturation High adjustment
  */
 struct drm_msm_sixzone {
 	__u64 flags;
@@ -171,6 +182,9 @@ struct drm_msm_sixzone {
 	__u32 sat_hold;
 	__u32 val_hold;
 	struct drm_msm_sixzone_curve curve[SIXZONE_LUT_SIZE];
+	__u32 sat_adjust_p0;
+	__u32 sat_adjust_p1;
+	__u32 curve_p2[SIXZONE_LUT_SIZE];
 };
 
 #define GAMUT_3D_MODE_17 1
@@ -481,7 +495,7 @@ struct drm_msm_ad4_roi_cfg {
 #define LTM_DATA_SIZE_3 33
 #define LTM_BUFFER_SIZE 5
 #define LTM_GUARD_BYTES 255
-#define LTM_BLOCK_SIZE 2
+#define LTM_BLOCK_SIZE 4
 
 #define LTM_STATS_SAT (1 << 1)
 #define LTM_STATS_MERGE_SAT (1 << 2)
@@ -742,6 +756,23 @@ struct drm_msm_backlight_info {
 struct drm_msm_dimming_bl_lut {
 	__u32 length;
 	__u32 mapped_bl[DIMMING_BL_LUT_LEN];
+};
+
+struct drm_msm_opr_value {
+	__u32 num_valid_opr;
+	__u32 opr_value[MAX_DSI_DISPLAY];
+};
+
+#define SDE_MAX_ROI 4
+struct drm_msm_roi {
+	__u32 num_rects;
+	struct drm_clip_rect roi[SDE_MAX_ROI];
+};
+
+struct drm_msm_misr_sign {
+	__u64 num_valid_misr;
+	struct drm_msm_roi roi_list;
+	__u64 misr_sign_value[MAX_DSI_DISPLAY];
 };
 
 #endif /* _MSM_DRM_PP_H_ */

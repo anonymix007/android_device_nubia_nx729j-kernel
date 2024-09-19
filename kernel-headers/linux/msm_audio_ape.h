@@ -2,8 +2,8 @@
  * from Monkey's Audio SDK with permission
  */
 
-#ifndef _UAPI_MSM_AUDIO_APE_H
-#define _UAPI_MSM_AUDIO_APE_H
+#ifndef _MSM_AUDIO_APE_H
+#define _MSM_AUDIO_APE_H
 
 #include <linux/types.h>
 
@@ -25,4 +25,4 @@ struct msm_audio_ape_config {
 	__u32 seekTablePresent;
 };
 
-#endif /* _UAPI_MSM_AUDIO_APE_H */
+#endif /* _MSM_AUDIO_APE_H */

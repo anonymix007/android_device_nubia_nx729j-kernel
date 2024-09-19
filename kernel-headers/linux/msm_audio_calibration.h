@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_CALIBRATION_H
-#define _UAPI_MSM_AUDIO_CALIBRATION_H
+#ifndef _MSM_AUDIO_CALIBRATION_H
+#define _MSM_AUDIO_CALIBRATION_H
 
 #include <linux/types.h>
 #include <linux/ioctl.h>
@@ -498,18 +498,18 @@ union audio_cal_col_na {
 	__u16	val16;
 	__u32	val32;
 	__u64	val64;
-} __packed;
+} __attribute__((packed));
 
 struct audio_cal_col {
 	__u32		id;
 	__u32		type;
 	union audio_cal_col_na	na_value;
-} __packed;
+} __attribute__((packed));
 
 struct audio_cal_col_data {
 	__u32		num_columns;
 	struct audio_cal_col	column[MAX_VOICE_COLUMNS];
-} __packed;
+} __attribute__((packed));
 
 struct audio_cal_info_voc_col {
 	__s32				table_id;
@@ -837,4 +837,4 @@ struct audio_cal_sp_v4_ex_vi_param {
 	struct audio_cal_type_sp_v4_ex_vi_param		cal_type;
 };
 
-#endif /* _UAPI_MSM_AUDIO_CALIBRATION_H */
+#endif /* _MSM_AUDIO_CALIBRATION_H */

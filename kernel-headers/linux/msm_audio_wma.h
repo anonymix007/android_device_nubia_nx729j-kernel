@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_WMA_H
-#define _UAPI_MSM_AUDIO_WMA_H
+#ifndef _MSM_AUDIO_WMA_H
+#define _MSM_AUDIO_WMA_H
 
 #include <linux/types.h>
 
@@ -32,4 +32,4 @@ struct msm_audio_wma_config_v2 {
 	unsigned short	encodeopt;
 };
 
-#endif /* _UAPI_MSM_AUDIO_WMA_H */
+#endif /* _MSM_AUDIO_WMA_H */

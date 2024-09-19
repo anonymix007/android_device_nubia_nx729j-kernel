@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
 /*
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
  * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
  */
 
@@ -73,13 +73,6 @@ extern "C" {
  */
 #define DRM_FORMAT_MOD_QCOM_ALPHA_SWAP	fourcc_mod_code(QCOM, 0x10)
 
-/*
- * @DRM_FORMAT_MOD_QCOM_FSC_TILE:	Refers to a tile variant of the
- *					planar format. Implementation may be
- *					platform and base-format specific.
- */
-#define DRM_FORMAT_MOD_QCOM_FSC_TILE       fourcc_mod_code(QCOM, 0x20)
-
 /**
  * Blend operations for "blend_op" property
  *
@@ -106,17 +99,6 @@ extern "C" {
 #define SDE_DRM_BLEND_OP_COVERAGE       3
 #define SDE_DRM_BLEND_OP_MAX            4
 #define SDE_DRM_BLEND_OP_SKIP           5
-
-/**
- * Sys Cache types for "syscache_type" property
- *
- * @SDE_SYSCACHE_LLCC_DISP:	Syscache type is default, LLCC_DISP.
- * @SDE_SYSCACHE_LLCC_EVA_LEFT:	Syscache type is eva left, LLCC_EVALFT.
- * @SDE_SYSCACHE_LLCC_EVA_RIGHT:Syscache type is eva right, LLCC_EVARGHT.
- */
-#define SDE_SYSCACHE_LLCC_DISP		0
-#define SDE_SYSCACHE_LLCC_EVA_LEFT	1
-#define SDE_SYSCACHE_LLCC_EVA_RIGHT	2
 
 /**
  * Bit masks for "src_config" property
@@ -280,6 +262,9 @@ struct sde_drm_de_v1 {
 /* Disable dynamic expansion */
 #define SDE_DYN_EXP_DISABLE 0x1
 
+#define SDE_DE_LPF_BLEND_FILT
+#define SDE_DE_LPF_BLEND_FLAG_EN (1 << 0)
+
 #define SDE_DRM_QSEED3LITE
 #define SDE_DRM_QSEED4
 #define SDE_DRM_INLINE_PREDOWNSCALE
@@ -320,6 +305,10 @@ struct sde_drm_de_v1 {
  * @pre_downscale_x_1  Pre-downscale ratio, x-direction, plane 1(UV)
  * @pre_downscale_y_0  Pre-downscale ratio, y-direction, plane 0(Y/RGB)
  * @pre_downscale_y_1  Pre-downscale ratio, y-direction, plane 1(UV)
+ * @de_lpf_flags:      Detail enhancer lpf blned configuration flags
+ * @de_lpf_h:          Detail enhancer lpf blend high
+ * @de_lpf_l:          Detail enhancer lpf blend low
+ * @de_lpf_m:          Detail enhancer lpf blend medium
  */
 struct sde_drm_scaler_v2 {
 	/*
@@ -385,10 +374,15 @@ struct sde_drm_scaler_v2 {
 	__u32 pre_downscale_x_1;
 	__u32 pre_downscale_y_0;
 	__u32 pre_downscale_y_1;
+
+	__u32 de_lpf_flags;
+	__u32 de_lpf_h;
+	__u32 de_lpf_l;
+	__u32 de_lpf_m;
 };
 
 /* Number of dest scalers supported */
-#define SDE_MAX_DS_COUNT 2
+#define SDE_MAX_DS_COUNT 4
 
 /*
  * Destination scaler flag config
@@ -586,7 +580,7 @@ struct sde_drm_ubwc_stats_data {
  */
 #define SDE_FRAME_DATA_BUFFER_MAX	0x3
 #define SDE_FRAME_DATA_GUARD_BYTES	0xFF
-#define SDE_FRAME_DATA_MAX_PLANES	0x10
+#define SDE_FRAME_DATA_MAX_PLANES	0x14
 
 /**
  * struct sde_drm_frame_data_buffers_ctrl - control frame data buffers
@@ -811,6 +805,95 @@ struct drm_msm_noise_layer_cfg {
 	__u32 alpha_noise;
 };
 
+#define FEATURE_DNSC_BLUR
+/* Downscale Blur - number of gaussian coefficient LUTs */
+#define DNSC_BLUR_COEF_NUM		64
+
+/* Downscale Blur flags */
+#define DNSC_BLUR_EN			(1 << 0)
+#define DNSC_BLUR_RND_8B_EN		(1 << 1)
+#define DNSC_BLUR_DITHER_EN		(1 << 2)
+
+#define DNSC_BLUR_MIRROR_BLK_CFG	(1 << 16)
+#define DNSC_BLUR_INDEPENDENT_BLK_CFG	(1 << 17)
+
+/* Downscale Blur horizontal/vertical filter flags */
+#define DNSC_BLUR_GAUS_FILTER		(1 << 0)
+#define DNSC_BLUR_PCMN_FILTER		(1 << 1)
+
+/* Downscale Blur Dither matrix size */
+#define DNSC_BLUR_DITHER_MATRIX_SZ	16
+
+/* Downscale Blur Dither flags */
+#define DNSC_BLUR_DITHER_LUMA_MODE	(1 << 0)
+
+/**
+ * struct sde_drm_dnsc_blur_cfg - Downscale Blur config structure
+ * @flags: Flags to indicate features enabled, values are
+ *          based on "Downscale Blur flags"
+ * @num_blocks: Active dnsc_blur blocks used for the display
+ * @src_width: Source width configuration
+ * @src_height: Source height configuration
+ * @dst_width: Destination width configuration
+ * @dst_height: Destination height configuration
+ * @flags_h: Flags for horizontal downscaling, values are
+ *            based on "Downscale Blur horizontal/vertical filter flags"
+ * @flags_v: Flags for veritcal downscaling
+ * @phase_init_h: Initial phase value for horizontal downscaling
+ * @phase_step_h: Phase step value for horizontal downscaling
+ * @phase_init_v: Initial phase value for vertical downscaling
+ * @phase_step_v: Phase step value for vertical downscaling
+ * @norm_h: Horizontal downscale normalization downshift value
+ * @ratio_h: Horizontal downscale ratio value
+ * @norm_v: Vertical downscale normalization downshift value
+ * @ratio_v: Vertical downscale ratio value
+ * @coef_hori: Horizontal downscale LUT coefficients
+ * @coef_vert: Vertical downscale LUT coefficients
+ * @dither_flags: Flags for dither customization, values are
+ *                 based on "Downscale Blur Dither flags"
+ * @temporal_en: Temperal dither enable
+ * @c0_bitdepth: c0 component bit depth
+ * @c1_bitdepth: c1 component bit depth
+ * @c2_bitdepth: c2 component bit depth
+ * @c3_bitdepth: c2 component bit depth
+ * @dither_matrix: Dither strength matrix
+ */
+struct sde_drm_dnsc_blur_cfg {
+	__u64 flags;
+	__u32 num_blocks;
+
+	__u32 src_width;
+	__u32 src_height;
+	__u32 dst_width;
+	__u32 dst_height;
+
+	__u32 flags_h;
+	__u32 flags_v;
+
+	/* pcmn filter parameters */
+	__u32 phase_init_h;
+	__u32 phase_step_h;
+	__u32 phase_init_v;
+	__u32 phase_step_v;
+
+	/* gaussian filter parameters */
+	__u32 norm_h;
+	__u32 ratio_h;
+	__u32 norm_v;
+	__u32 ratio_v;
+	__u32 coef_hori[DNSC_BLUR_COEF_NUM];
+	__u32 coef_vert[DNSC_BLUR_COEF_NUM];
+
+	/* dither configs */
+	__u64 dither_flags;
+	__u32 temporal_en;
+	__u32 c0_bitdepth;
+	__u32 c1_bitdepth;
+	__u32 c2_bitdepth;
+	__u32 c3_bitdepth;
+	__u32 dither_matrix[DNSC_BLUR_DITHER_MATRIX_SZ];
+};
+
 #define DRM_SDE_WB_CONFIG              0x40
 #define DRM_MSM_REGISTER_EVENT         0x41
 #define DRM_MSM_DEREGISTER_EVENT       0x42
@@ -834,6 +917,8 @@ struct drm_msm_noise_layer_cfg {
 #define DRM_EVENT_FRAME_DATA 0x8000000C
 #define DRM_EVENT_DIMMING_BL 0X8000000D
 #define DRM_EVENT_VM_RELEASE 0X8000000E
+#define DRM_EVENT_OPR_VALUE 0X8000000F
+#define DRM_EVENT_MISR_SIGN 0X80000010
 
 #ifndef DRM_MODE_FLAG_VID_MODE_PANEL
 #define DRM_MODE_FLAG_VID_MODE_PANEL        0x01

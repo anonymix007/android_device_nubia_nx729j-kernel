@@ -1,5 +1,5 @@
-#ifndef _UAPI_AVTIMER_H
-#define _UAPI_AVTIMER_H
+#ifndef _AVTIMER_H
+#define _AVTIMER_H
 
 #include <linux/ioctl.h>
 #include <linux/types.h>

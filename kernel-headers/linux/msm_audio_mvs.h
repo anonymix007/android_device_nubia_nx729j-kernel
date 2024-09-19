@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_MVS_H
-#define _UAPI_MSM_AUDIO_MVS_H
+#ifndef _MSM_AUDIO_MVS_H
+#define _MSM_AUDIO_MVS_H
 
 #include <audio/linux/msm_audio.h>
 #include <linux/types.h>
@@ -153,4 +153,4 @@ struct q5v2_msm_audio_mvs_frame {
 	__u8 voc_pkt[Q5V2_MVS_MAX_VOC_PKT_SIZE];
 
 };
-#endif /* _UAPI_MSM_AUDIO_MVS_H */
+#endif /* _MSM_AUDIO_MVS_H */

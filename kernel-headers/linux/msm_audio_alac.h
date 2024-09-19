@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_ALAC_H
-#define _UAPI_MSM_AUDIO_ALAC_H
+#ifndef _MSM_AUDIO_ALAC_H
+#define _MSM_AUDIO_ALAC_H
 
 #include <linux/types.h>
 
@@ -23,4 +23,4 @@ struct msm_audio_alac_config {
 	__u32 channelLayout;
 };
 
-#endif /* _UAPI_MSM_AUDIO_ALAC_H */
+#endif /* _MSM_AUDIO_ALAC_H */

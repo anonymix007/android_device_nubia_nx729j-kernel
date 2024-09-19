@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_QCP_H
-#define _UAPI_MSM_AUDIO_QCP_H
+#ifndef _MSM_AUDIO_QCP_H
+#define _MSM_AUDIO_QCP_H
 
 #include <audio/linux/msm_audio.h>
 #include <linux/types.h>
@@ -35,4 +35,4 @@ struct msm_audio_evrc_enc_config {
 	__u32 max_bit_rate;
 };
 
-#endif /* _UAPI_MSM_AUDIO_QCP_H */
+#endif /* _MSM_AUDIO_QCP_H */

@@ -25,7 +25,7 @@
  */
 struct wcd_spi_ac_buf_data {
 	__u32 addr[WCD_SPI_AC_MAX_CH_PER_BUF];
-} __packed;
+} __attribute__((packed));
 
 /*
  * wcd_spi_ac_write_cmd:
@@ -47,6 +47,6 @@ struct wcd_spi_ac_buf_data {
 struct wcd_spi_ac_write_cmd {
 	__u32 cmd_type;
 	__u8 payload[0];
-} __packed;
+} __attribute__((packed));
 
 #endif /* end of __UAPI_WCD_SPI_AC_PARAMS_H__ */

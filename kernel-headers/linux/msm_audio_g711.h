@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_G711_H
-#define _UAPI_MSM_AUDIO_G711_H
+#ifndef _MSM_AUDIO_G711_H
+#define _MSM_AUDIO_G711_H
 
 #include <audio/linux/msm_audio.h>
 #include <linux/types.h>
@@ -15,4 +15,4 @@ struct msm_audio_g711_enc_config {
 	(AUDIO_MAX_COMMON_IOCTL_NUM+1), struct msm_audio_g711_enc_config)
 
 
-#endif /* _UAPI_MSM_AUDIO_G711_H */
+#endif /* _MSM_AUDIO_G711_H */

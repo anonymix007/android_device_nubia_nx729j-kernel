@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_AAC_H
-#define _UAPI_MSM_AUDIO_AAC_H
+#ifndef _MSM_AUDIO_AAC_H
+#define _MSM_AUDIO_AAC_H
 
 #include <audio/linux/msm_audio.h>
 #include <linux/types.h>
@@ -74,4 +74,4 @@ struct msm_audio_aac_enc_config {
 	__u32 stream_format;
 };
 
-#endif /* _UAPI_MSM_AUDIO_AAC_H */
+#endif /* _MSM_AUDIO_AAC_H */

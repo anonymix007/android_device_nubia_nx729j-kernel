@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 /*
  * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 #ifndef __MMM_COLOR_FMT_INFO_H__
 #define __MMM_COLOR_FMT_INFO_H__
@@ -855,7 +856,7 @@ enum mmm_color_fmts {
  * Progressive: width
  * Interlaced: width
  */
-static inline unsigned int MMM_COLOR_FMT_Y_STRIDE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_Y_STRIDE(unsigned int color_fmt,
 	unsigned int width)
 {
 	unsigned int alignment, stride = 0;
@@ -887,6 +888,7 @@ static inline unsigned int MMM_COLOR_FMT_Y_STRIDE(unsigned int color_fmt,
 	case MMM_COLOR_FMT_P010_512:
 		alignment = 512;
 		stride = MMM_COLOR_FMT_ALIGN(width * 2, alignment);
+		break;
 	default:
 		break;
 	}
@@ -901,7 +903,7 @@ invalid_input:
  * Progressive: width
  * Interlaced: width
  */
-static inline unsigned int MMM_COLOR_FMT_UV_STRIDE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_UV_STRIDE(unsigned int color_fmt,
 	unsigned int width)
 {
 	unsigned int alignment, stride = 0;
@@ -948,7 +950,7 @@ invalid_input:
  * Progressive: height
  * Interlaced: (height+1)>>1
  */
-static inline unsigned int MMM_COLOR_FMT_Y_SCANLINES(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_Y_SCANLINES(unsigned int color_fmt,
 	unsigned int height)
 {
 	unsigned int alignment, sclines = 0;
@@ -986,7 +988,7 @@ invalid_input:
  * Progressive: height
  * Interlaced: (height+1)>>1
  */
-static inline unsigned int MMM_COLOR_FMT_UV_SCANLINES(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_UV_SCANLINES(unsigned int color_fmt,
 	unsigned int height)
 {
 	unsigned int alignment, sclines = 0;
@@ -1027,7 +1029,7 @@ invalid_input:
  * Progressive: width
  * Interlaced: width
  */
-static inline unsigned int MMM_COLOR_FMT_Y_META_STRIDE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_Y_META_STRIDE(unsigned int color_fmt,
 	unsigned int width)
 {
 	int y_tile_width = 0, y_meta_stride = 0;
@@ -1061,7 +1063,7 @@ invalid_input:
  * Progressive: height
  * Interlaced: (height+1)>>1
  */
-static inline unsigned int MMM_COLOR_FMT_Y_META_SCANLINES(
+static __inline__ unsigned int MMM_COLOR_FMT_Y_META_SCANLINES(
 		unsigned int color_fmt,	unsigned int height)
 {
 	int y_tile_height = 0, y_meta_scanlines = 0;
@@ -1095,7 +1097,7 @@ invalid_input:
  * Progressive: width
  * Interlaced: width
  */
-static inline unsigned int MMM_COLOR_FMT_UV_META_STRIDE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_UV_META_STRIDE(unsigned int color_fmt,
 	unsigned int width)
 {
 	int uv_tile_width = 0, uv_meta_stride = 0;
@@ -1129,7 +1131,7 @@ invalid_input:
  * Progressive: height
  * Interlaced: (height+1)>>1
  */
-static inline unsigned int MMM_COLOR_FMT_UV_META_SCANLINES(
+static __inline__ unsigned int MMM_COLOR_FMT_UV_META_SCANLINES(
 		unsigned int color_fmt,	unsigned int height)
 {
 	int uv_tile_height = 0, uv_meta_scanlines = 0;
@@ -1157,7 +1159,7 @@ invalid_input:
 	return uv_meta_scanlines;
 }
 
-static inline unsigned int MMM_COLOR_FMT_RGB_STRIDE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_RGB_STRIDE(unsigned int color_fmt,
 	unsigned int width)
 {
 	unsigned int alignment = 0, stride = 0, bpp = 4;
@@ -1191,7 +1193,7 @@ invalid_input:
 	return stride;
 }
 
-static inline unsigned int MMM_COLOR_FMT_RGB_SCANLINES(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_RGB_SCANLINES(unsigned int color_fmt,
 	unsigned int height)
 {
 	unsigned int alignment = 0, scanlines = 0;
@@ -1219,7 +1221,7 @@ invalid_input:
 	return scanlines;
 }
 
-static inline unsigned int MMM_COLOR_FMT_RGB_META_STRIDE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_RGB_META_STRIDE(unsigned int color_fmt,
 	unsigned int width)
 {
 	int rgb_tile_width = 0, rgb_meta_stride = 0;
@@ -1247,7 +1249,7 @@ invalid_input:
 	return rgb_meta_stride;
 }
 
-static inline unsigned int MMM_COLOR_FMT_RGB_META_SCANLINES(
+static __inline__ unsigned int MMM_COLOR_FMT_RGB_META_SCANLINES(
 		unsigned int color_fmt,	unsigned int height)
 {
 	int rgb_tile_height = 0, rgb_meta_scanlines = 0;
@@ -1283,7 +1285,7 @@ invalid_input:
  * Progressive: height
  * Interlaced: height
  */
-static inline unsigned int MMM_COLOR_FMT_BUFFER_SIZE(unsigned int color_fmt,
+static __inline__ unsigned int MMM_COLOR_FMT_BUFFER_SIZE(unsigned int color_fmt,
 	unsigned int width, unsigned int height)
 {
 	unsigned int size = 0;
@@ -1425,7 +1427,7 @@ invalid_input:
 	return MMM_COLOR_FMT_ALIGN(size, 4096);
 }
 
-static inline unsigned int MMM_COLOR_FMT_BUFFER_SIZE_USED(
+static __inline__ unsigned int MMM_COLOR_FMT_BUFFER_SIZE_USED(
 		unsigned int color_fmt,	unsigned int width,
 		unsigned int height, unsigned int interlace)
 {

@@ -5,8 +5,8 @@
  * Copyright (c) 2012, 2014, 2017, 2020, 2021 The Linux Foundation. All rights reserved.
  */
 
-#ifndef _UAPI_LINUX_MSM_AUDIO_H
-#define _UAPI_LINUX_MSM_AUDIO_H
+#ifndef _LINUX_MSM_AUDIO_H
+#define _LINUX_MSM_AUDIO_H
 
 #include <linux/types.h>
 #include <linux/ioctl.h>

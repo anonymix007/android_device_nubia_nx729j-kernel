@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_AC3_H
-#define _UAPI_MSM_AUDIO_AC3_H
+#ifndef _MSM_AUDIO_AC3_H
+#define _MSM_AUDIO_AC3_H
 
 #include <audio/linux/msm_audio.h>
 
@@ -38,4 +38,4 @@ struct msm_audio_ac3_config {
 	unsigned short		channel_routing_mode[6];
 };
 
-#endif /* _UAPI_MSM_AUDIO_AC3_H */
+#endif /* _MSM_AUDIO_AC3_H */

@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_AMRNB_H
-#define _UAPI_MSM_AUDIO_AMRNB_H
+#ifndef _MSM_AUDIO_AMRNB_H
+#define _MSM_AUDIO_AMRNB_H
 
 #include <audio/linux/msm_audio.h>
 #include <linux/types.h>
@@ -32,4 +32,4 @@ struct msm_audio_amrnb_enc_config_v2 {
 	__u32 dtx_enable;
 	__u32 frame_format;
 };
-#endif /* _UAPI_MSM_AUDIO_AMRNB_H */
+#endif /* _MSM_AUDIO_AMRNB_H */

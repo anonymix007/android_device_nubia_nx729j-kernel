@@ -1,5 +1,5 @@
-#ifndef _UAPI_MSM_AUDIO_SBC_H
-#define _UAPI_MSM_AUDIO_SBC_H
+#ifndef _MSM_AUDIO_SBC_H
+#define _MSM_AUDIO_SBC_H
 
 #include <audio/linux/msm_audio.h>
 #include <linux/types.h>
@@ -34,4 +34,4 @@ struct msm_audio_sbc_enc_config {
 	__u32 bit_rate;
 	__u32 mode;
 };
-#endif /* _UAPI_MSM_AUDIO_SBC_H */
+#endif /* _MSM_AUDIO_SBC_H */

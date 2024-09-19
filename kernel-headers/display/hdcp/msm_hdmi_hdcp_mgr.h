@@ -3,8 +3,8 @@
  * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  */
 
-#ifndef _UAPI__MSM_HDMI_HDCP_MGR_H
-#define _UAPI__MSM_HDMI_HDCP_MGR_H
+#ifndef __MSM_HDMI_HDCP_MGR_H
+#define __MSM_HDMI_HDCP_MGR_H
 
 #include <linux/types.h>
 
@@ -58,4 +58,4 @@ struct HDCP_V2V1_MSG_TOPOLOGY {
 	__u32 max_dev_exceeded;
 };
 
-#endif /* _UAPI__MSM_HDMI_HDCP_MGR_H */
+#endif /* __MSM_HDMI_HDCP_MGR_H */
