@@ -51,7 +51,6 @@ msm_dma_iommu_mapping.ko
 pinctrl-kalama.ko
 qnoc-kalama.ko
 msm_rtb.ko
-ns.ko
 nvmem_qcom-spmi-sdam.ko
 phy-qcom-ufs.ko
 phy-qcom-ufs-qmp-v4-kalama.ko
@@ -181,7 +180,7 @@ sec_nfc.ko
 sg.ko
 spi-msm-geni.ko
 spmi-pmic-arb-debug.ko
-spmi-glink-debug.ko
+pmic-glink-debug.ko
 msm_sharedmem.ko
 phy-generic.ko
 phy-qcom-emu.ko
