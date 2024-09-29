@@ -254,6 +254,10 @@ extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wsa884x/wsa884x_dlkm.ko
 extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd938x/wcd938x_dlkm.ko
 extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd938x/wcd938x_slave_dlkm.ko
 extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wsa883x/wsa883x_dlkm.ko
+extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd937x/wcd937x_dlkm.ko
+extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd937x/wcd937x_slave_dlkm.ko
+extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd939x/wcd939x_dlkm.ko
+extra/vendor/qcom/opensource/audio-kernel/asoc/codecs/wcd939x/wcd939x_slave_dlkm.ko
 extra/vendor/qcom/opensource/camera-kernel/camera.ko
 extra/vendor/qcom/opensource/dataipa/drivers/platform/msm/gsi/gsim.ko
 extra/vendor/qcom/opensource/dataipa/drivers/platform/msm/ipa/ipa_clients/rndisipam.ko
